@@ -12,10 +12,10 @@ window.onload= function (){
                              
                          }
                      };   
-                     var docval= document.getElementById('country').value; 
+                    //  var docval= document.getElementById('country').value; 
                     //  var url ="https://ide.c9.io/shemueljeremiah21/info2180_lab7/world.php";
                      http.open('GET',"world.php?country=Jamaica",true);  
-                     http.send(null); 
+                     http.send(); 
                  });
                 
     }
