@@ -1,16 +1,29 @@
 <?php
 $host = getenv('IP');
-$username = getenv('C9_USER');
+$username = "root";
 $password = '';
 $dbname = 'world';
 
-$country =$_GET['country'];
-
 $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
-$stmt = $conn->query("SELECT * FROM countries WHERE name LIKE %$country%");
+$country =$_GET['country']; 
+$all = $_GET['all']; 
 
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+function($country, $all){ 
+    
+    if($country==null && $all==null){
+        echo "";
+        
+    }else if ($country!=null && $all==null){
+        
+                $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
+        
+    }else if ($country == null && $all!=null){
+                
+                $stmt=$conn->query("SELECT * FROM countries"); 
+    }
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 echo '<ul>';
 foreach ($results as $row) {
